@@ -240,7 +240,7 @@ public class Database {
         Vector<Vector> vector = new Vector<>();
         Vector<Object> items;
         try {
-            query = ("SELECT CONCAT(students.firstname, ' ', students.surname)as 'Full Name', settings.school_fee, sum(transactions.amount_paid)as 'Total amount paid', (settings.school_fee-sum(transactions.amount_paid))as 'Balance' FROM Transactions INNER JOIN Settings ON Transactions.setting_Id = Settings.setting_Id and transactions.setting_id = (SELECT setting_id FROM Settings ORDER BY setting_id DESC LIMIT 1) and transactions.type='School Fees' JOIN students ON students.student_Id =transactions.student_Id Group by students.student_Id");
+            query = ("SELECT CONCAT(students.firstname, ' ', students.surname)as 'Full Name', settings.school_fee, sum(transactions.amount_paid)as 'Total amount paid', (settings.school_fee-sum(transactions.amount_paid))as 'Balance' FROM Transactions INNER JOIN Settings ON transactions.setting_Id = Settings.setting_Id and transactions.setting_id = (SELECT setting_id FROM Settings ORDER BY setting_id DESC LIMIT 1) and transactions.type='School Fees' JOIN students ON students.student_Id =transactions.student_Id Group by students.student_Id");
             Statement stmt = conn.createStatement();
             ResultSet rslt = stmt.executeQuery(query);
             while (rslt.next()) {

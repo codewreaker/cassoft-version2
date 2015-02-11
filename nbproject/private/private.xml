@@ -3,11 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Israel%20Agyeman-Premp/Documents/NetBeansProjects/Crudily/src/controllers/AddStudentController.java</file>
-            <file>file:/C:/Users/Israel%20Agyeman-Premp/Documents/NetBeansProjects/Crudily/src/views/MainView.java</file>
-            <file>file:/C:/Users/Israel%20Agyeman-Premp/Documents/NetBeansProjects/Crudily/src/models/Database.java</file>
-            <file>file:/C:/Users/Israel%20Agyeman-Premp/Documents/NetBeansProjects/Crudily/src/controllers/MainController.java</file>
-            <file>file:/C:/Users/Israel%20Agyeman-Premp/Documents/NetBeansProjects/Crudily/src/models/Operations.java</file>
+            <file>file:/C:/Users/Prophet/Documents/NetBeansProjects/Crudily/src/controllers/SettingsController.java</file>
+            <file>file:/C:/Users/Prophet/Documents/NetBeansProjects/Crudily/src/views/MainView.java</file>
+            <file>file:/C:/Users/Prophet/Documents/NetBeansProjects/Crudily/src/Main.java</file>
+            <file>file:/C:/Users/Prophet/Documents/NetBeansProjects/Crudily/src/controllers/AddStudentController.java</file>
+            <file>file:/C:/Users/Prophet/Documents/NetBeansProjects/Crudily/src/models/Operations.java</file>
+            <file>file:/C:/Users/Prophet/Documents/NetBeansProjects/Crudily/src/models/Database.java</file>
+            <file>file:/C:/Users/Prophet/Documents/NetBeansProjects/Crudily/src/models/Student.java</file>
         </group>
     </open-files>
 </project-private>
