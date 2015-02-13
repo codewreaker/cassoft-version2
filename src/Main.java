@@ -1,10 +1,8 @@
 
-import controllers.LoginController;
+import cassoftControllers.UIAnimations;
 import javax.swing.SwingUtilities;
 import javax.swing.UnsupportedLookAndFeelException;
-import models.Database;
-import views.Login;
-import views.MainView;
+import cassoftViews.MainView;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -46,10 +44,8 @@ public class Main {
             @Override
             public void run() {
                 MainView mv = new MainView();
-                Database db = new Database();
-                Login lg = new Login();
-                LoginController lc = new LoginController(lg, mv, db);
-                lc.control();
+                UIAnimations ui = new UIAnimations(mv);
+                ui.control();
             }
         });
     }
