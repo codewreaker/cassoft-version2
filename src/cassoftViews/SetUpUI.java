@@ -6,6 +6,7 @@
 package cassoftViews;
 
 import javax.swing.JButton;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 /**
@@ -30,19 +31,26 @@ public class SetUpUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        preferredPassword = new javax.swing.JTextField();
+        jPasswordField1 = new javax.swing.JPasswordField();
+        preferredPassword = new javax.swing.JPasswordField();
         mysqlUsername = new javax.swing.JTextField();
-        mysqlPassword = new javax.swing.JTextField();
+        mysqlPassword = new javax.swing.JPasswordField();
         preferredUsername = new javax.swing.JTextField();
         done = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
+        jPasswordField1.setText("jPasswordField1");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(preferredPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 180, 30));
+
+        preferredPassword.setText("jPasswordField2");
+        getContentPane().add(preferredPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, 180, 30));
         getContentPane().add(mysqlUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, 180, 30));
-        getContentPane().add(mysqlPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, 180, 30));
+
+        mysqlPassword.setText("jPasswordField2");
+        getContentPane().add(mysqlPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 180, 30));
         getContentPane().add(preferredUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 180, 30));
 
         done.setBackground(new java.awt.Color(242, 118, 34));
@@ -68,7 +76,7 @@ public class SetUpUI extends javax.swing.JFrame {
      * Getting the preferred password of the user for set up
      * @return preferred password
      */
-    public JTextField password(){
+    public JPasswordField password(){
         return preferredPassword;
     }
     
@@ -84,7 +92,7 @@ public class SetUpUI extends javax.swing.JFrame {
      * Get the mysql password of the user for setup
      * @return the user's mysql password 
      */
-    public JTextField mysqlPassword(){
+    public JPasswordField mysqlPassword(){
         return mysqlPassword;
     }
     
@@ -136,9 +144,10 @@ public class SetUpUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton done;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField mysqlPassword;
+    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JPasswordField mysqlPassword;
     private javax.swing.JTextField mysqlUsername;
-    private javax.swing.JTextField preferredPassword;
+    private javax.swing.JPasswordField preferredPassword;
     private javax.swing.JTextField preferredUsername;
     // End of variables declaration//GEN-END:variables
 }
