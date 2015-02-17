@@ -1,4 +1,5 @@
 
+import cassoftControllers.SetUp;
 import cassoftControllers.UIAnimations;
 import javax.swing.SwingUtilities;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -43,9 +44,13 @@ public class Main {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
+                SetUp sp = new SetUp();
                 MainView mv = new MainView();
                 UIAnimations ui = new UIAnimations(mv);
                 ui.control();
+                
+                
+                
             }
         });
     }
