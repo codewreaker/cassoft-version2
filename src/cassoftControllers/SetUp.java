@@ -5,6 +5,7 @@
  */
 package cassoftControllers;
 
+import cassoftModels.Database;
 import cassoftViews.SetUpUI;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,6 +18,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  **
@@ -62,15 +64,22 @@ public class SetUp {
                          */
                         File fout = new File("credentials.txt");
                         FOS = new FileOutputStream(fout);
-                        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(FOS));
-                        String userDetails = dbLogin.username().getText() + ":" + dbLogin.password().getPassword();
-                        String mysqlDetails = dbLogin.mysqlUsername().getText() + ":" + dbLogin.mysqlPassword().getPassword();
+                        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(FOS));                        
+                        String userDetails = dbLogin.username().getText() + ":" + dbLogin.password().getText();
+                        String dbPass = dbLogin.mysqlPassword().getText();
+                        if(dbLogin.mysqlPassword().getText().isEmpty()){ 
+                            dbPass = "e";
+                        }
+                        String mysqlDetails = dbLogin.mysqlUsername().getText() + ":" + dbPass;                        
                         bw.write(userDetails);
                         bw.newLine();
                         bw.write(mysqlDetails);
                         bw.close();
+                        JOptionPane.showMessageDialog(dbLogin, "Succesfully Created Details");                        
+                        dbLogin.dispose();
                     } catch (FileNotFoundException ex) {
                         Logger.getLogger(SetUp.class.getName()).log(Level.SEVERE, null, ex);
+                        JOptionPane.showMessageDialog(dbLogin, "Failed to create SetUp Details");
                     } catch (IOException ex) {
                         Logger.getLogger(SetUp.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -85,8 +94,13 @@ public class SetUp {
         return state;
     }
     
+    /**
+     * Informs if the text file for credentials have been created
+     * @return 
+     */
     public boolean hasCredentials(){
         return state;
     }
+  
 
 }

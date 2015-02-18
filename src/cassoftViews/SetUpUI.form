@@ -33,10 +33,7 @@
     <Property name="useNullLayout" type="boolean" value="false"/>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JPasswordField" name="preferredPassword">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jPasswordField2"/>
-      </Properties>
+    <Component class="javax.swing.JPasswordField" name="mysqlPassword">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="60" y="380" width="180" height="30"/>
@@ -50,10 +47,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JPasswordField" name="mysqlPassword">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jPasswordField2"/>
-      </Properties>
+    <Component class="javax.swing.JPasswordField" name="preferredPassword">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="60" y="230" width="180" height="30"/>

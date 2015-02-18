@@ -44,12 +44,13 @@ public class UIAnimations {
         mv.saveButton().setVisible(false);
         mv.getCategoryComboBox().setVisible(false);
         mv.setVisible(true);
+        control();
     }
 
     /**
      * This method initiates the listeners.
      */
-    public void control() {
+    private void control() {
         mouseListener = new MouseListener() {
 
             @Override

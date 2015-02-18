@@ -31,23 +31,18 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        loginBtn = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         userName = new javax.swing.JTextField();
         password = new javax.swing.JPasswordField();
+        loginBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        loginBtn.setBackground(new java.awt.Color(53, 73, 93));
-        loginBtn.setForeground(new java.awt.Color(53, 73, 93));
-        loginBtn.setText("Login");
-        getContentPane().add(loginBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, 90, -1));
-
         jLabel2.setBackground(new java.awt.Color(53, 73, 93));
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/close-01.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/close.png"))); // NOI18N
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabel2MouseEntered(evt);
@@ -56,7 +51,7 @@ public class Login extends javax.swing.JFrame {
                 jLabel2MouseClicked(evt);
             }
         });
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, -1, 20));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, 30, 20));
 
         userName.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         userName.setForeground(new java.awt.Color(53, 73, 93));
@@ -68,6 +63,9 @@ public class Login extends javax.swing.JFrame {
         password.setBorder(null);
         getContentPane().add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, 230, 30));
 
+        loginBtn.setText("Login");
+        getContentPane().add(loginBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, -1, -1));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/login-01.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -75,13 +73,13 @@ public class Login extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel2MouseEntered
-
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         System.exit(0);
     }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void jLabel2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel2MouseEntered
 
     /**
      * @param args the command line arguments

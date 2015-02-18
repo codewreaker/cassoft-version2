@@ -32,9 +32,9 @@ public class SetUpUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jPasswordField1 = new javax.swing.JPasswordField();
-        preferredPassword = new javax.swing.JPasswordField();
-        mysqlUsername = new javax.swing.JTextField();
         mysqlPassword = new javax.swing.JPasswordField();
+        mysqlUsername = new javax.swing.JTextField();
+        preferredPassword = new javax.swing.JPasswordField();
         preferredUsername = new javax.swing.JTextField();
         done = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -44,13 +44,9 @@ public class SetUpUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        preferredPassword.setText("jPasswordField2");
-        getContentPane().add(preferredPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, 180, 30));
+        getContentPane().add(mysqlPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, 180, 30));
         getContentPane().add(mysqlUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, 180, 30));
-
-        mysqlPassword.setText("jPasswordField2");
-        getContentPane().add(mysqlPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 180, 30));
+        getContentPane().add(preferredPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 180, 30));
         getContentPane().add(preferredUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 180, 30));
 
         done.setBackground(new java.awt.Color(242, 118, 34));
@@ -92,7 +88,7 @@ public class SetUpUI extends javax.swing.JFrame {
      * Get the mysql password of the user for setup
      * @return the user's mysql password 
      */
-    public JPasswordField mysqlPassword(){
+    public JPasswordField mysqlPassword(){        
         return mysqlPassword;
     }
     

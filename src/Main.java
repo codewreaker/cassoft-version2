@@ -1,5 +1,7 @@
+import cassoftControllers.LoginController;
 import cassoftControllers.SetUp;
 import cassoftControllers.UIAnimations;
+import cassoftModels.Database;
 import cassoftViews.Login;
 import javax.swing.SwingUtilities;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -45,7 +47,7 @@ public class Main {
             @Override
             public void run() {
                 SetUp sp = new SetUp();
-                if (sp.hasCredentials()) {
+                if (sp.hasCredentials()) {                    
                     /**
                      * credentials.txt is first checked if it exists, the database is connected to
                      * using data from credentials.txt, if credentials.txt does not exist the Set Up
@@ -58,9 +60,14 @@ public class Main {
                      * to the database and authenticate the user like previously
                      */
                     Login login = new Login();
-                    MainView mv = new MainView();
-                    UIAnimations ui = new UIAnimations(mv);
-                    ui.control();
+                    MainView mv = new MainView();                    
+                    Database db = new Database();
+                    System.out.println("STatus: "+db.isConnected());
+                    LoginController lgc = new LoginController(login,mv,db);
+                    System.out.println("STatus: "+db.isConnected());
+                    
+                    
+                    
                 }
 
             }
