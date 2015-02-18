@@ -42,6 +42,8 @@ public class UIAnimations {
         this.mv = mv;
         mv.setExtendedState(JFrame.MAXIMIZED_BOTH);
         mv.saveButton().setVisible(false);
+        mv.amountPaidLabel().setVisible(false);
+        mv.getAmountPaidField().setVisible(false);
         mv.getCategoryComboBox().setVisible(false);
         mv.setVisible(true);
         control();
@@ -75,6 +77,8 @@ public class UIAnimations {
                 } else if (e.getSource() == mv.studView()) {
                 } else if (e.getSource() == mv.studDelete()) {
                 } else if (e.getSource() == mv.studPay()) {
+                    mv.amountPaidLabel().setVisible(true);
+                    mv.getAmountPaidField().setVisible(true);
                     mv.saveButton().setVisible(true);
                     mv.getCategoryComboBox().setVisible(true);
                 } else if (e.getSource() == mv.settingsBtn()) {
@@ -177,6 +181,8 @@ public class UIAnimations {
         mv.studHistory().addMouseListener(mouseListener);
         mv.studView().addMouseListener(mouseListener);
         mv.studDelete().addMouseListener(mouseListener);
+        mv.amountPaidLabel().addMouseListener(mouseListener);
+        mv.getAmountPaidField().addMouseListener(mouseListener);
         mv.studPay().addMouseListener(mouseListener);
         mv.settingsBtn().addMouseListener(mouseListener);
         mv.addStudent().addMouseListener(mouseListener);

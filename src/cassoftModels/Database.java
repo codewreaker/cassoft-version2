@@ -164,12 +164,13 @@ public class Database {
      */
     public boolean createInitialPassword() {
         try {
+            isConnected();
             String query = "";
             String arr[] = getUserTextDetails();
             String uName = arr[0];
             String passW = arr[1];
 
-            query = ("INSERT INTO `credentials`(name,password) VALUES " + "('"+ uName +"','"+ passW +"')");
+            query = ("INSERT IGNORE INTO `credentials`(name,password) VALUES " + "('"+ uName +"','"+ passW +"')");
             Statement stmt = conn.createStatement();
             stmt.executeUpdate(query);            
             return true;

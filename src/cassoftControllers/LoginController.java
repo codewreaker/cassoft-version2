@@ -52,8 +52,7 @@ public class LoginController {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (e.getSource() == login.login()) {
-                    System.out.println("Sucessfuly Created and Executed Password? "+database.createInitialPassword());
+                if (e.getSource() == login.login()) {                                      
                     login();
                 }
             }
@@ -64,9 +63,11 @@ public class LoginController {
 
     public void login() {
         if(database.checkPassword(login.userName().getText(), login.password().getText())){
+            login.dispose();
             UIAnimations ui = new UIAnimations(mv);
         }else{
-            JOptionPane.showMessageDialog(login, "Failed To Login");
+            JOptionPane.showMessageDialog(login, "Wrong Username or Password");
+//            System.exit(0);
         }
         
     }

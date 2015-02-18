@@ -62,9 +62,8 @@ public class Main {
                     Login login = new Login();
                     MainView mv = new MainView();                    
                     Database db = new Database();
-                    System.out.println("STatus: "+db.isConnected());
+                    System.out.println("Sucessfuly Created and Executed Password? "+db.createInitialPassword());  
                     LoginController lgc = new LoginController(login,mv,db);
-                    System.out.println("STatus: "+db.isConnected());
                     
                     
                     

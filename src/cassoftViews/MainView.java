@@ -49,7 +49,7 @@ public class MainView extends javax.swing.JFrame {
         viewHistory = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        amountPaidLabel = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         studImage = new javax.swing.JLabel();
@@ -142,11 +142,11 @@ public class MainView extends javax.swing.JFrame {
         jLabel2.setText("Payment History");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, -1, -1));
 
-        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel4.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Amount Paid");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 550, -1, 20));
+        amountPaidLabel.setBackground(new java.awt.Color(255, 255, 255));
+        amountPaidLabel.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
+        amountPaidLabel.setForeground(new java.awt.Color(255, 255, 255));
+        amountPaidLabel.setText("Amount Paid");
+        getContentPane().add(amountPaidLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 550, -1, 20));
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
@@ -419,6 +419,10 @@ public class MainView extends javax.swing.JFrame {
      public JTextField getAmountPaidField() {
         return amtPaidTxtField;
     }
+     
+     public JLabel amountPaidLabel(){
+         return amountPaidLabel;
+     }
 
     /**
      * Returns the name of the currently displaying student This was made a
@@ -441,6 +445,7 @@ public class MainView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel addStudent;
+    private javax.swing.JLabel amountPaidLabel;
     private javax.swing.JTextField amtPaidTxtField;
     private javax.swing.JLabel bg;
     private javax.swing.JComboBox categoryComboBox;
@@ -450,7 +455,6 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
