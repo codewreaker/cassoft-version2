@@ -53,7 +53,7 @@ public class LoginController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == login.login()) {
-                    database.createInitialPassword();
+                    System.out.println("Sucessfuly Created and Executed Password? "+database.createInitialPassword());
                     login();
                 }
             }

@@ -162,21 +162,6 @@ public class Database {
      * password later on
      * @return 
      */
-//    public void createInitialPassword() {
-//        try {
-//            String arr[] = getUserTextDetails();
-//            String uName = arr[0];
-//            String passW = arr[1];
-//            System.out.println(arr[0]);
-//            System.out.println(arr[1]);
-//            Statement statement = conn.createStatement();
-//            statement.executeUpdate("INSERT INTO credentials(name, password)"
-//                    + "VALUES('" + uName + "',  '" + passW + "')");
-//
-//        } catch (SQLException | FileNotFoundException ex) {
-//            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
     public boolean createInitialPassword() {
         try {
             String query = "";
@@ -184,11 +169,12 @@ public class Database {
             String uName = arr[0];
             String passW = arr[1];
 
-            query = ("INSERT INTO `credentials`(name,password,)VALUES" + "("+ uName + "," + passW + ")");
+            query = ("INSERT INTO `credentials`(name,password) VALUES " + "('"+ uName +"','"+ passW +"')");
             Statement stmt = conn.createStatement();
-            stmt.executeUpdate(query);
+            stmt.executeUpdate(query);            
             return true;
         } catch (SQLException |FileNotFoundException e) {
+            System.out.println(e);
             return false;
         }
 

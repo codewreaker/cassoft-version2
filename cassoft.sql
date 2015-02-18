@@ -16,9 +16,10 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
 
---
--- Database: `cassoft`
---
+
+create Database `cassoft`;
+use `cassoft`;
+
 
 -- --------------------------------------------------------
 
@@ -73,34 +74,7 @@ CREATE TABLE IF NOT EXISTS `medicals` (
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `music`
---
 
-CREATE TABLE IF NOT EXISTS `music` (
-`music_id` int(10) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `author` varchar(255) NOT NULL,
-  `time` varchar(255) NOT NULL,
-  `album` varchar(255) DEFAULT 'unknown',
-  `path` tinyblob NOT NULL,
-  `date` date NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `music`
---
-
-INSERT INTO `music` (`music_id`, `title`, `author`, `time`, `album`, `path`, `date`) VALUES
-(1, 'The Scientist', 'Coldplay', '265', 'X&Y', 0x4c4f41445f46494c4528433a557365727349737261656c20416779656d616e2d5072656d704d757369635472617878436f6c64706c617958265954686520536369656e746973742e6d703329, '2014-12-06'),
-(2, 'Get Lucky (Feat. Pharrell Will', 'Daft Punk', '369', 'Random Access Memories', 0x4c4f41445f46494c4528433a557365727349737261656c20416779656d616e2d5072656d704d7573696354726178784461667450756e6b446166742050756e6b202d2052616e646f6d20416363657373204d656d6f7269657320283230313329203332306b627073205b476c6f7747617a652e436f6d5d003820446166742050756e6b202d20476574204c75636b792028466561742e205068617272656c6c2057696c6c69616d7329205b476c6f7747617a652e436f6d5d2e6d703329, '2014-12-06'),
-(3, 'Tell Me', 'Capital Kings', '224', 'Capital Kings', 0x4c4f41445f46494c4528433a557365727349737261656c20416779656d616e2d5072656d704d7573696354726178784361706974616c204b696e677300392054656c6c204d652e6d703329, '2014-12-06'),
-(6, 'On Top of the World', 'Imagine Dragons', '192', 'Night Visions (Deluxe Version)', 0x4c4f41445f46494c4528433a557365727349737261656c20416779656d616e2d5072656d704d757369635472617878496d6167696e6520447261676f6e73202d204e6967687420566973696f6e73202844656c7578652056657273696f6e292032303133203332306b627073205b476c6f7747617a652e436f6d5d0035204f6e20546f70206f662074686520576f726c64205b476c6f7747617a652e436f6d5d2e6d703329, '2014-12-06'),
-(7, 'Desperate People', 'Hillsong United', '330', 'All Of The Above', 0x4c4f41445f46494c4528433a557365727349737261656c20416779656d616e2d5072656d704d757369635472617878416c6c206f66207468652041626f76650033202d2048696c6c736f6e6720556e69746564202d204465737065726174652050656f706c652e6d703329, '2014-12-06'),
-(8, 'Bones', 'Hillsong United', '376', 'Aftermath', 0x4c4f41445f46494c4528433a557365727349737261656c20416779656d616e2d5072656d704d75736963547261787848696c6c736f6e67202d2032303131202d2041667465726d6174680037202d20426f6e65732e6d703329, '2014-12-06'),
-(9, 'Father', 'Hillsong United', '411', 'Aftermath', 0x4c4f41445f46494c4528433a557365727349737261656c20416779656d616e2d5072656d704d75736963547261787848696c6c736f6e67202d2032303131202d2041667465726d6174680038202d204661746865722e6d703329, '2014-12-06');
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `settings`
@@ -183,11 +157,6 @@ ALTER TABLE `guardians`
 ALTER TABLE `medicals`
  ADD PRIMARY KEY (`medical_Id`);
 
---
--- Indexes for table `music`
---
-ALTER TABLE `music`
- ADD PRIMARY KEY (`music_id`);
 
 --
 -- Indexes for table `settings`
@@ -207,6 +176,13 @@ ALTER TABLE `students`
 ALTER TABLE `transactions`
  ADD PRIMARY KEY (`transaction_Id`), ADD KEY `student_Id` (`student_Id`);
 
+ --
+ -- Indexes for table `credentials`
+ --
+
+ALTER TABLE `credentials`
+ ADD PRIMARY KEY (`c_Id`), ADD KEY `c_Id` (`c_Id`);
+
 --
 -- AUTO_INCREMENT for dumped tables
 --
@@ -222,10 +198,7 @@ MODIFY `guardian_Id` int(10) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `medicals`
 MODIFY `medical_Id` int(10) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `music`
---
-ALTER TABLE `music`
-MODIFY `music_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+
 --
 -- AUTO_INCREMENT for table `settings`
 --
@@ -244,6 +217,12 @@ MODIFY `transaction_Id` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- Constraints for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `credentials`
+--
+ALTER TABLE `credentials`
+MODIFY `c_Id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for table `students`

@@ -75,7 +75,7 @@ public class SetUp {
                         bw.newLine();
                         bw.write(mysqlDetails);
                         bw.close();
-                        JOptionPane.showMessageDialog(dbLogin, "Succesfully Created Details");                        
+                        JOptionPane.showMessageDialog(dbLogin, "Succesfully Created Details Please Restart The Program");                        
                         dbLogin.dispose();
                     } catch (FileNotFoundException ex) {
                         Logger.getLogger(SetUp.class.getName()).log(Level.SEVERE, null, ex);
