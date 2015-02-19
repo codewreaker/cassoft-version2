@@ -13,8 +13,6 @@ import java.util.Calendar;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-import static sun.security.jgss.GSSUtil.login;
 
 public class Database {
 
@@ -201,9 +199,9 @@ public Vector getStudents() {
         Vector<Student> students = new Vector<>();
         try {
             String a,b;
-            int c;
+            int c, f;
             double d,e;
-            query = ("SELECT students.surname, students.firstname,students.graduation_year, settings.school_fee, sum(transactions.amount_paid)as 'Total amount paid' FROM Transactions INNER JOIN Settings ON Transactions.setting_Id = Settings.setting_Id and transactions.setting_id = (SELECT setting_id FROM Settings ORDER BY setting_id DESC LIMIT 1) and transactions.type='School Fees' JOIN students ON students.student_Id =transactions.student_Id Group by students.surname");
+            query = ("SELECT students.surname, students.firstname,students.graduation_year, settings.school_fee, sum(transactions.amount_paid)as 'Total amount paid', student_id FROM Transactions INNER JOIN Settings ON Transactions.setting_Id = Settings.setting_Id and transactions.setting_id = (SELECT setting_id FROM Settings ORDER BY setting_id DESC LIMIT 1) and transactions.type='School Fees' JOIN students ON students.student_Id =transactions.student_Id Group by students.surname");
             Statement stmt = conn.createStatement();
             ResultSet rslt = stmt.executeQuery(query);
             while (rslt.next()) {
@@ -212,8 +210,8 @@ public Vector getStudents() {
                 c = rslt.getInt(3);
                 d = rslt.getDouble(4);
                 e = rslt.getDouble(5);
+                f = rslt.getInt(6);
                 Student newStud = new Student();
-                
                 
                 newStud.setFirstName(a);
                 
@@ -224,6 +222,8 @@ public Vector getStudents() {
                 newStud.setFees(d);
                 
                 newStud.setBalance(e);
+                
+                newStud.setId(f);
                 
                 students.add(newStud);
             }
@@ -256,4 +256,34 @@ public Vector getStudents() {
        else{currClass = "Graduated";}
        return currClass;
    }
+    
+    public boolean addTransaction(int id, String category, double amountPaid){
+        String query = "";
+        try{
+            query = ("");
+            
+            Statement stmt = conn.createStatement();
+            ResultSet result = stmt.executeQuery(query);
+        }catch(SQLException e){
+            return false;
+        }
+        
+        return false;
+    }
+    
+    public Vector getTransactionByStudent(int id){
+        return null;
+    }
+    public boolean deleteStudent(int id){
+        String query = "";
+        try{
+            query = ("DELETE FROM students WHERE student_Id = '" + id +"'");
+            Statement stmt = conn.createStatement();
+            ResultSet result = stmt.executeQuery(query);
+            return true;
+        }catch(SQLException e){
+            return false;
+        }
+    }
+    
 }

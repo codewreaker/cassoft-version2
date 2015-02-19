@@ -17,6 +17,7 @@ public class Student extends Person {
     String studClass;
     double fees;
     double balance;
+    int id;
     
     public Student(String surname, String firstName, int age, char gender, Date birthdate, String studClass){
         super(surname,firstName,age,gender);
@@ -45,6 +46,10 @@ public class Student extends Person {
         this.balance = balance;
     }
     
+    public void setId(int id){
+        this.id = id;
+    }
+    
     public Date getBirthDate(){
         return birthdate;
     }
@@ -59,6 +64,10 @@ public class Student extends Person {
     
     public double getBalance(){
         return this.balance;
+    }
+    
+    public int getId(){
+        return this.id;
     }
     
     
