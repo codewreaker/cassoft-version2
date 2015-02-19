@@ -208,24 +208,28 @@ public Vector getStudents() {
             String a,b;
             int c, f;
             double d,e;
-            query = ("SELECT students.surname, students.firstname,students.graduation_year, settings.school_fee, sum(transactions.amount_paid)as 'Total amount paid', student_id FROM Transactions INNER JOIN Settings ON Transactions.setting_Id = Settings.setting_Id and transactions.setting_id = (SELECT setting_id FROM Settings ORDER BY setting_id DESC LIMIT 1) and transactions.type='School Fees' JOIN students ON students.student_Id =transactions.student_Id Group by students.surname");
+            query = ("SELECT students.surname, students.firstname,students.graduation_year, settings.school_fee, sum(transactions.amount_paid)as 'Total amount paid', students.student_id FROM transactions INNER JOIN Settings ON transactions.setting_Id = settings.setting_Id and transactions.setting_id = (SELECT setting_id FROM Settings ORDER BY setting_id DESC LIMIT 1) and transactions.type='School Fee' JOIN students ON students.student_Id =transactions.student_Id Group by students.surname");
             Statement stmt = conn.createStatement();
+            System.out.println("getStudents statement created");
             ResultSet rslt = stmt.executeQuery(query);
+            System.out.println("-----------------get students -------------------");
             while (rslt.next()) {
                 a = rslt.getString(1);
+                System.out.println("Surname:"+a);
                 b = rslt.getString(2);
+                System.out.println("Firstname:"+b);
                 c = rslt.getInt(3);
+                System.out.println("Graduation Year:"+c);
                 d = rslt.getDouble(4);
+                System.out.println("Fees:"+d);
                 e = rslt.getDouble(5);
+                System.out.println("Total:"+e);
                 f = rslt.getInt(6);
-                Student newStud = new Student();
-                
-                newStud.setFirstName(a);
-                
-                newStud.setSurname(b);
-                
-                newStud.setStudentClass(getStudentClass(c));
-                
+                System.out.println("Balance:"+f);
+                Student newStud = new Student();                
+                newStud.setFirstName(a);                
+                newStud.setSurname(b);                
+                newStud.setStudentClass(getStudentClass(c));                
                 newStud.setFees(d);
                 
                 newStud.setBalance(e);
@@ -318,6 +322,14 @@ public Vector getStudents() {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
         return state;
+    }
+    
+     public static void main(String[] args){
+        Database db = new Database();
+        db.isConnected();
+        Vector students = db.getStudents();
+        System.out.println("Contents of Vector: "+students.toString());
+       
     }
 
 }

@@ -1,4 +1,5 @@
 import cassoftControllers.LoginController;
+import cassoftControllers.MainController;
 import cassoftControllers.SetUp;
 import cassoftControllers.UIAnimations;
 import cassoftModels.Database;
@@ -64,7 +65,7 @@ public class Main {
                     Database db = new Database();
                     System.out.println("Sucessfuly Created and Executed Password? "+db.createInitialPassword());  
                     LoginController lgc = new LoginController(login,mv,db);
-                 
+                    
                 }
 
             }

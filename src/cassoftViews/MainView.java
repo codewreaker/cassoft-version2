@@ -85,7 +85,7 @@ public class MainView extends javax.swing.JFrame {
         mainTable.setSelectionBackground(new java.awt.Color(0, 102, 204));
         jScrollPane1.setViewportView(mainTable);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 100, 1100, 660));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 110, 1080, 650));
 
         dbOn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/db_on.png"))); // NOI18N
         getContentPane().add(dbOn, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 690, -1, 60));

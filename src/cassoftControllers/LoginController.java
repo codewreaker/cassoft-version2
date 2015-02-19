@@ -65,6 +65,7 @@ public class LoginController {
         if(database.checkPassword(login.userName().getText(), login.password().getText())){
             login.dispose();
             UIAnimations ui = new UIAnimations(mv);
+            MainController mc = new MainController(mv, database);
         }else{
             JOptionPane.showMessageDialog(login, "Wrong Username or Password");
 //            System.exit(0);

@@ -11,6 +11,8 @@ import cassoftModels.Student;
 import cassoftViews.AddStudent;
 import cassoftViews.MainView;
 import cassoftViews.Settings;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -29,6 +31,7 @@ public class MainController {
 
     private MouseMotionListener mouseMotionListener;
     private MouseListener mouseListener;
+    private ActionListener actionListener;
     private Database db;
     private MainView mv;
     private Operations op;
@@ -38,6 +41,7 @@ public class MainController {
     private int yMouse;
     private KeyAdapter keyAdapter;
     private Border border;
+    private DefaultTableModel dtm;
     public static String surName;
     public static String firstName;
     public Vector<Student> studList;
@@ -47,13 +51,14 @@ public class MainController {
     public MainController(MainView mv, Database db) {
         this.db = db;
         this.mv = mv;
-        home();
+        home();  
+        control();
     }
 
     /**
      * This method initiates the listeners.
      */
-    public void control() {
+    private void control() {
         mouseListener = new MouseListener() {
 
             @Override
@@ -95,7 +100,9 @@ public class MainController {
                     //put code for saving here
                     makePayment();
                 } else if (e.getSource() == mv.mainTable()) {
+                    System.out.println("table clicked");
                     enlargen(mv.mainTable().getSelectedRow());
+                    
                     // put code for clicking any part of the table
                 }else if (e.getSource() == mv.home()) {
                     // put code for viewing home screen when the home button is pressed
@@ -119,6 +126,16 @@ public class MainController {
             @Override
             public void mouseExited(MouseEvent e) {/**/}
         };
+        
+        actionListener = new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(e.getSource()== mv.mainTable()){
+                    
+                }
+            }
+        };
 
   
 
@@ -136,6 +153,7 @@ public class MainController {
         mv.home().addMouseListener(mouseListener);
         //mv.searchTextField().addMouseListener(mouseListener);
         mv.mainTable().addMouseListener(mouseListener);
+        
         mv.bg().addMouseListener(mouseListener);
         mv.bg().addMouseMotionListener(mouseMotionListener);
         this.border = mv.getAmountPaidField().getBorder();
@@ -158,6 +176,7 @@ public class MainController {
             cols.add(stud.getFees());
             cols.add(stud.getBalance());
             table.add(cols);
+            System.out.println("Adding Students from DB");
         }
         Vector colsName = new Vector();
         colsName.add("Name");
@@ -165,7 +184,7 @@ public class MainController {
         colsName.add("Fees");
         colsName.add("Balance");
         
-        DefaultTableModel dtm = new DefaultTableModel(table, colsName);
+        dtm = new DefaultTableModel(table, colsName);
         mv.mainTable().setModel(dtm);
     }
     
