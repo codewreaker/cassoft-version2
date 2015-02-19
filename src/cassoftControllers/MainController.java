@@ -81,6 +81,7 @@ public class MainController {
                     }
                 } else if (e.getSource() == mv.studHistory()) {
                     //put code for student history here
+                    seeHistory();
                 } else if (e.getSource() == mv.studView()) {
                     //put code to view student here
                 } else if (e.getSource() == mv.studDelete()) {
@@ -89,7 +90,7 @@ public class MainController {
                 } else if (e.getSource() == mv.settingsBtn()) {
                     // put code for application settings here
                 } else if (e.getSource() == mv.addStudent()) {
-                    // put code for adding student here
+                 
                 } else if (e.getSource() == mv.viewHistory()) {
                     // put code for viewing general statistics here
                 } else if (e.getSource() == mv.searchComboBox()) {
@@ -106,9 +107,10 @@ public class MainController {
                     // put code for clicking any part of the table
                 }else if (e.getSource() == mv.home()) {
                     // put code for viewing home screen when the home button is pressed
+                    home();
                 }  else if(e.getSource() == mv.studPay()) {
                     // System.out.println("Where have you clicked");
-                    makePaymentVisible();
+                    
                 }else{
                     
                 }
@@ -125,6 +127,8 @@ public class MainController {
 
             @Override
             public void mouseExited(MouseEvent e) {/**/}
+
+            
         };
         
         actionListener = new ActionListener() {
@@ -195,17 +199,10 @@ public class MainController {
         
     }
     
-    public void makePaymentVisible(){
-        mv.getCategoryComboBox().setVisible(true);
-        mv.getAmountPaidField().setVisible(true);
-        mv.amountPaidLabel().setVisible(true);
-        mv.saveButton().setVisible(true);
-    }
-    
+  
     public void makePayment(){
         String category = mv.getCategoryComboBox().getSelectedItem().toString();
-        double amount = Double.parseDouble(mv.getAmountPaidField().getText());
-        
+        double amount = Double.parseDouble(mv.getAmountPaidField().getText());        
         db.addTransaction(highlighted.getId(), category, amount);
     }
     
@@ -219,12 +216,7 @@ public class MainController {
         mv.mainTable().setModel(dtm);
     }
     
-    public void setPaymentInvisible(){
-        mv.getCategoryComboBox().setVisible(false);
-        mv.getAmountPaidField().setVisible(false);
-        mv.amountPaidLabel().setVisible(false);
-        mv.saveButton().setVisible(false);
-    }
+   
     
     public void deleteStudent(){
         db.deleteStudent(highlighted.getId());

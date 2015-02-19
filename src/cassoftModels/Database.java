@@ -270,8 +270,7 @@ public Vector getStudents() {
     public boolean addTransaction(int id, String category, double amountPaid){
         String query = "";
         try{
-            query = ("");
-            
+            query = ("");            
             Statement stmt = conn.createStatement();
             ResultSet result = stmt.executeQuery(query);
         }catch(SQLException e){
