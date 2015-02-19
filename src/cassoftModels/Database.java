@@ -215,31 +215,5 @@ public class Database {
     }
     
     
-     /**
-     * This method looks for all possible outcomes of given text.
-     *
-     * @param s represents the entered text.
-     * @return represents list of possible strings.
-     */
-    public ArrayList<String> suggest(String s) {
-        ArrayList<String> suggestions = new ArrayList<>();
-
-        String query = "";
-
-        try {
-
-            query = "select * from students WHERE CONCAT(students.firstname, ' ', students.surname) LIKE'" + s + "%' OR students.surname LIKE '" + s + "%'";
-            Statement stmt = conn.createStatement();
-            ResultSet result = stmt.executeQuery(query);
-            while (result.next()) {
-                suggestions.add(result.getString("firstname") + " " + result.getString("surname"));
-            }
-            //Collections.sort(suggestions);
-
-        } catch (SQLException ex) {
-            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return suggestions;
-    }
 
 }
