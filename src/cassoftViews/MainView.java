@@ -288,7 +288,7 @@ public class MainView extends javax.swing.JFrame {
     }
 
     /**
-     * This returns the minimise button
+     * This returns the minimize button
      *
      * @return student view
      */
