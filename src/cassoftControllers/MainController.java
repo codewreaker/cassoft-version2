@@ -90,7 +90,7 @@ public class MainController {
                 } else if (e.getSource() == mv.settingsBtn()) {
                     settings();
                 } else if (e.getSource() == mv.addStudent()) {
-                 
+                    addStudent();
                 } else if (e.getSource() == mv.viewHistory()) {
                     // put code for viewing general statistics here
                 } else if (e.getSource() == mv.searchComboBox()) {
@@ -228,4 +228,11 @@ public class MainController {
         SettingsController sc = new SettingsController(settings, db);
         sc.control();
     }
+     private void addStudent(){
+        if(add == null){
+        add = new AddStudent();
+        }
+        AddStudentController adc = new AddStudentController(add,db);
+    }
+     
 }
