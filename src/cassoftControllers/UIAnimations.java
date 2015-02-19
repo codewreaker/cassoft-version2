@@ -35,16 +35,15 @@ public class UIAnimations {
     private int yMouse;
     private KeyAdapter keyAdapter;
     private Border border;
+    private int counter = 1;
+    private int counter2 = 1;
     public static String surName;
     public static String firstName;
 
     public UIAnimations(MainView mv) {
         this.mv = mv;
         mv.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        mv.saveButton().setVisible(false);
-        mv.amountPaidLabel().setVisible(false);
-        mv.getAmountPaidField().setVisible(false);
-        mv.getCategoryComboBox().setVisible(false);
+        hidePaymentDetails();
         mv.setVisible(true);
         control();
     }
@@ -64,23 +63,13 @@ public class UIAnimations {
                 } else if (e.getSource() == mv.minimise()) {
                 } else if (e.getSource() == mv.maximise()) {
                     {
-                        mv.bg().setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/UI-02.png")));
-                        mv.dispose();
-                        mv.setUndecorated(false);
-                        mv.setVisible(true);
-                        mv.minimise().setVisible(false);
-                        mv.maximise().setVisible(false);
-                        mv.close().setVisible(false);
-
+                        switchWindows();
                     }
                 } else if (e.getSource() == mv.studHistory()) {
                 } else if (e.getSource() == mv.studView()) {
                 } else if (e.getSource() == mv.studDelete()) {
                 } else if (e.getSource() == mv.studPay()) {
-                    mv.amountPaidLabel().setVisible(true);
-                    mv.getAmountPaidField().setVisible(true);
-                    mv.saveButton().setVisible(true);
-                    mv.getCategoryComboBox().setVisible(true);
+                    hidePaymentDetails();
                 } else if (e.getSource() == mv.settingsBtn()) {
                 } else if (e.getSource() == mv.addStudent()) {
                 } else if (e.getSource() == mv.viewHistory()) {
@@ -195,5 +184,49 @@ public class UIAnimations {
         mv.bg().addMouseListener(mouseListener);
         mv.bg().addMouseMotionListener(mouseMotionListener);
         this.border = mv.getAmountPaidField().getBorder();
+    }
+
+    /**
+     * A method that hides and shows the payment details on-click
+     */
+    private void hidePaymentDetails() {
+        if (counter % 2 != 0) {
+            mv.saveButton().setVisible(false);
+            mv.amountPaidLabel().setVisible(false);
+            mv.getAmountPaidField().setVisible(false);
+            mv.getCategoryComboBox().setVisible(false);
+        } else {
+            mv.saveButton().setVisible(true);
+            mv.amountPaidLabel().setVisible(true);
+            mv.getAmountPaidField().setVisible(true);
+            mv.getCategoryComboBox().setVisible(true);
+        }
+        counter++;
+    }
+
+    /**
+     * A method that switches the screen between fullscreen and maximised
+     */
+    private void switchWindows() {
+        if (counter2 % 2 != 0) {
+            mv.bg().setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/UI-02.png")));
+            mv.dispose();
+            mv.setUndecorated(false);
+            mv.setVisible(true);
+            mv.minimise().setVisible(false);
+            //mv.maximise().setVisible(false);
+            mv.close().setVisible(false);
+        } else {
+            mv.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            mv.bg().setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/UI-02.png")));
+            mv.dispose();
+            mv.setUndecorated(true);
+            mv.setVisible(true);
+            mv.minimise().setVisible(true);
+            mv.maximise().setVisible(true);
+            mv.close().setVisible(true);
+        }
+        counter2++;
+
     }
 }
