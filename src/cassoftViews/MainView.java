@@ -36,12 +36,12 @@ public class MainView extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         mainTable = new javax.swing.JTable();
-        dbOn = new javax.swing.JLabel();
         searchBox = new javax.swing.JComboBox();
         searchLabel = new javax.swing.JLabel();
         minimise = new javax.swing.JLabel();
         close = new javax.swing.JLabel();
         maximise = new javax.swing.JLabel();
+        fullscreen = new javax.swing.JLabel();
         home = new javax.swing.JLabel();
         settings = new javax.swing.JLabel();
         addStudent = new javax.swing.JLabel();
@@ -64,6 +64,7 @@ public class MainView extends javax.swing.JFrame {
         bg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setAlwaysOnTop(true);
         setAutoRequestFocus(false);
         setMinimumSize(new java.awt.Dimension(688, 760));
         setUndecorated(true);
@@ -87,9 +88,6 @@ public class MainView extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 110, 1080, 650));
 
-        dbOn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/db_on.png"))); // NOI18N
-        getContentPane().add(dbOn, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 690, -1, 60));
-
         searchBox.setEditable(true);
         searchBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,7 +106,10 @@ public class MainView extends javax.swing.JFrame {
         getContentPane().add(close, new org.netbeans.lib.awtextra.AbsoluteConstraints(1340, 0, -1, 30));
 
         maximise.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/maximise.png"))); // NOI18N
-        getContentPane().add(maximise, new org.netbeans.lib.awtextra.AbsoluteConstraints(1310, 0, -1, 30));
+        getContentPane().add(maximise, new org.netbeans.lib.awtextra.AbsoluteConstraints(1310, 0, 30, 30));
+
+        fullscreen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/fullscreen.png"))); // NOI18N
+        getContentPane().add(fullscreen, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 30, 70, 30));
 
         home.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/home.png"))); // NOI18N
         home.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -198,6 +199,8 @@ public class MainView extends javax.swing.JFrame {
         getContentPane().add(amtPaidTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 570, 210, 40));
 
         saveBtn.setBackground(new java.awt.Color(243, 117, 32));
+        saveBtn.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        saveBtn.setForeground(new java.awt.Color(243, 117, 32));
         saveBtn.setText("Save");
         getContentPane().add(saveBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 620, 210, 40));
 
@@ -205,6 +208,7 @@ public class MainView extends javax.swing.JFrame {
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, -1));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void amtPaidTxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amtPaidTxtFieldActionPerformed
@@ -379,14 +383,7 @@ public class MainView extends javax.swing.JFrame {
         return bg;
     }
 
-    /**
-     * Returns an icon which is yellow when the database is connected
-     *
-     * @return Jlabel dbOn
-     */
-    public JLabel dbOn() {
-        return dbOn;
-    }
+   
 
     /**
      * returns the table
@@ -444,6 +441,13 @@ public class MainView extends javax.swing.JFrame {
     public JLabel home(){
         return home;
     }
+    
+    /**
+     * A button that allows you to switch to fullscreen
+     */
+    public JLabel fullscreen(){
+        return fullscreen;
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -454,7 +458,7 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JComboBox categoryComboBox;
     private javax.swing.JLabel className;
     private javax.swing.JLabel close;
-    private javax.swing.JLabel dbOn;
+    private javax.swing.JLabel fullscreen;
     private javax.swing.JLabel home;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

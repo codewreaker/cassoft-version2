@@ -14,7 +14,7 @@ import javax.swing.JTextField;
  *
  * @author Israel Agyeman-Premp
  */
-public class AddStudent extends javax.swing.JFrame {
+public class AddStudent extends javax.swing.JDialog {
 
     /**
      * Creates new form AddStudent
@@ -40,9 +40,11 @@ public class AddStudent extends javax.swing.JFrame {
         classComboBox = new javax.swing.JComboBox();
         saveBtn = new javax.swing.JButton();
         exitBtn = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Add Student");
+        setAlwaysOnTop(true);
         setResizable(false);
 
         jLabel1.setText("Surname");
@@ -64,11 +66,6 @@ public class AddStudent extends javax.swing.JFrame {
         jLabel3.setText("Class");
 
         classComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "nursery 1", "nursery 2", "KG 1", "KG 2", "Class 1", "Class 2", "Class 3", "Class 4", "Class 5", "Class 6", "JHS 1", "JHS 2", "JHS 3" }));
-        classComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                classComboBoxActionPerformed(evt);
-            }
-        });
 
         saveBtn.setText("Save");
 
@@ -78,6 +75,8 @@ public class AddStudent extends javax.swing.JFrame {
                 exitBtnActionPerformed(evt);
             }
         });
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add_student-01.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -95,11 +94,17 @@ public class AddStudent extends javax.swing.JFrame {
                     .addComponent(firstNameText)
                     .addComponent(classComboBox, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(163, 163, 163)
+                .addComponent(jLabel4)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(129, 129, 129)
+                .addGap(35, 35, 35)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(surnameText, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -133,10 +138,6 @@ public class AddStudent extends javax.swing.JFrame {
     private void exitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_exitBtnActionPerformed
-
-    private void classComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classComboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_classComboBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -215,6 +216,7 @@ public class AddStudent extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JButton saveBtn;
     private javax.swing.JTextField surnameText;
     // End of variables declaration//GEN-END:variables

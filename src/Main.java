@@ -66,6 +66,7 @@ public class Main {
                     System.out.println("Sucessfuly Created and Executed Password? "+db.createInitialPassword());  
                     LoginController lgc = new LoginController(login,mv,db);
                     
+                 
                 }
 
             }

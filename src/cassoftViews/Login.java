@@ -53,18 +53,18 @@ public class Login extends javax.swing.JFrame {
         });
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, 30, 20));
 
-        userName.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        userName.setForeground(new java.awt.Color(53, 73, 93));
+        userName.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        userName.setForeground(new java.awt.Color(243, 117, 32));
         userName.setBorder(null);
-        getContentPane().add(userName, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 230, 30));
+        getContentPane().add(userName, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 220, 30));
 
-        password.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        password.setForeground(new java.awt.Color(53, 73, 93));
+        password.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        password.setForeground(new java.awt.Color(243, 117, 32));
         password.setBorder(null);
-        getContentPane().add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, 230, 30));
+        getContentPane().add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, 220, 30));
 
         loginBtn.setText("Login");
-        getContentPane().add(loginBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, -1, -1));
+        getContentPane().add(loginBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, 100, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/login-01.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
