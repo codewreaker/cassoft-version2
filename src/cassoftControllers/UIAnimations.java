@@ -5,12 +5,8 @@
  */
 package cassoftControllers;
 
-import cassoftModels.Database;
-import cassoftModels.Operations;
-import cassoftViews.AddStudent;
+
 import cassoftViews.MainView;
-import cassoftViews.Settings;
-import java.awt.event.KeyAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -26,25 +22,19 @@ public class UIAnimations {
 
     private MouseMotionListener mouseMotionListener;
     private MouseListener mouseListener;
-    private Database db;
-    private MainView mv;
-    private Operations op;
-    private AddStudent add;
-    private Settings settings;
+    private MainView mv;    
     private int xMouse;
     private int yMouse;
-    private KeyAdapter keyAdapter;
     private Border border;
     private int counter = 1;
-    private int counter2 = 1;
     public static String surName;
     public static String firstName;
 
     public UIAnimations(MainView mv) {
-        this.mv = mv;
-        mv.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.mv = mv;        
         hidePaymentDetails();
         mv.setVisible(true);
+        mv.fullscreen().setVisible(false);
         control();
     }
 
@@ -62,9 +52,9 @@ public class UIAnimations {
                     }
                 } else if (e.getSource() == mv.minimise()) {
                 } else if (e.getSource() == mv.maximise()) {
-                    {
-                        switchWindows();
-                    }
+                    switchWindows();
+                } else if (e.getSource() == mv.fullscreen()) {
+                    fullscreenWindow();
                 } else if (e.getSource() == mv.studHistory()) {
                 } else if (e.getSource() == mv.studView()) {
                 } else if (e.getSource() == mv.studDelete()) {
@@ -179,6 +169,7 @@ public class UIAnimations {
         mv.viewHistory().addMouseListener(mouseListener);
         mv.search().addMouseListener(mouseListener);
         mv.home().addMouseListener(mouseListener);
+        mv.fullscreen().addMouseListener(mouseListener);
         //mv.searchTextField().addMouseListener(mouseListener);
         mv.mainTable().addMouseListener(mouseListener);
         mv.bg().addMouseListener(mouseListener);
@@ -208,25 +199,27 @@ public class UIAnimations {
      * A method that switches the screen between fullscreen and maximised
      */
     private void switchWindows() {
-        if (counter2 % 2 != 0) {
+            //This clause minimises
             mv.bg().setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/UI-02.png")));
             mv.dispose();
             mv.setUndecorated(false);
             mv.setVisible(true);
-            mv.minimise().setVisible(false);
-            //mv.maximise().setVisible(false);
+            mv.minimise().setVisible(false);            
+            mv.maximise().setVisible(false);
+            mv.fullscreen().setVisible(true);
             mv.close().setVisible(false);
-        } else {
+    }
+    
+    private void fullscreenWindow(){
+        // This clause maximises
             mv.setExtendedState(JFrame.MAXIMIZED_BOTH);
             mv.bg().setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/UI-02.png")));
-            mv.dispose();
+            mv.dispose();  
             mv.setUndecorated(true);
             mv.setVisible(true);
             mv.minimise().setVisible(true);
+            mv.fullscreen().setVisible(false);
             mv.maximise().setVisible(true);
             mv.close().setVisible(true);
-        }
-        counter2++;
-
     }
 }

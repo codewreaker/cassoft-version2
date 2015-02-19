@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `credentials` (
 --
 
 INSERT INTO `credentials` (`c_Id`, `name`, `password`) VALUES
-(1, 'prophet', 'cassoft');
+(1, 'johndoe', 'cassoft');
 
 -- --------------------------------------------------------
 
@@ -121,7 +121,7 @@ CREATE TABLE IF NOT EXISTS `students` (
 --
 
 INSERT INTO `students` (`student_Id`, `surname`, `firstname`, `age`, `date_of_birth`, `gender`, `medical_Id`, `guardian_Id`, `graduation_year`) VALUES
-(1, 'Agyeman-Prempeh', 'Prophet', 0, NULL, NULL, NULL, NULL, 2025),
+(1, 'Agyeman-Prempeh', 'Israel', 0, NULL, NULL, NULL, NULL, 2025),
 (2, 'Vera', 'Asante', 0, NULL, NULL, NULL, NULL, 2026),
 (3, 'Acolatse', 'Dzidzor', 0, NULL, NULL, NULL, NULL, 2023),
 (4, 'Joseph', 'Otto', 0, NULL, NULL, NULL, NULL, 2018);
@@ -183,9 +183,7 @@ ALTER TABLE `transactions`
 ALTER TABLE `credentials`
  ADD PRIMARY KEY (`c_Id`), ADD KEY `c_Id` (`c_Id`);
 
---
--- AUTO_INCREMENT for dumped tables
---
+
 
 --
 -- AUTO_INCREMENT for table `guardians`
