@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -34,7 +35,7 @@ public class Database {
     private boolean status;
 
     public Database() {
-        
+
     }
 
     /**
@@ -42,7 +43,7 @@ public class Database {
      *
      * @return represents successful or unsuccessful connection
      */
-    public boolean isConnected() {        
+    public boolean isConnected() {
         try {
             String[] mysqlDetails = getMysqlDetails();
             String mysqlUsername = mysqlDetails[0];
@@ -50,7 +51,7 @@ public class Database {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             conn = java.sql.DriverManager.getConnection(
                     "jdbc:mysql://localhost/cassoft?user=" + mysqlUsername + "&password=" + mysqlPassword + "");
-        } catch (Exception e) {            
+        } catch (Exception e) {
             System.exit(0);
             return false;
         }
@@ -158,20 +159,26 @@ public class Database {
      * This method stores the credentials.txt username and password into the
      * database initially after first use. The user can still create another
      * password later on
-     * @return 
+     *
+     * @return
      */
     public boolean createInitialPassword() {
+        boolean state = false;
+        
         try {
+            isConnected();
             String query = "";
             String arr[] = getUserTextDetails();
             String uName = arr[0];
             String passW = arr[1];
-
-            query = ("INSERT INTO `credentials`(name,password) VALUES " + "('"+ uName +"','"+ passW +"')");
-            Statement stmt = conn.createStatement();
-            stmt.executeUpdate(query);            
-            return true;
-        } catch (SQLException |FileNotFoundException e) {
+            if (!containsDetailsAlready()) {
+                query = ("INSERT IGNORE INTO `credentials`(name,password) VALUES " + "('" + uName + "','" + passW + "')");
+                Statement stmt = conn.createStatement();
+                stmt.executeUpdate(query);
+                state = true;
+            }
+            return state;
+        } catch (SQLException | FileNotFoundException e) {
             System.out.println(e);
             return false;
         }
@@ -227,8 +234,7 @@ public Vector getStudents() {
                 
                 students.add(newStud);
             }
-
-        } catch (SQLException e) {
+             } catch (SQLException e) {
             System.out.println(e);
             return students;
         }
@@ -285,5 +291,33 @@ public Vector getStudents() {
             return false;
         }
     }
-    
+
+    /**
+     * This method checks if the password and username is already in the database before it adds the password
+     * @return 
+     */
+    private boolean containsDetailsAlready() {
+        boolean state = false;
+        try {            
+            String arr[] = getUserTextDetails();
+            String uName = arr[0];
+            String passW = arr[1];            
+            String query = "";
+            query = "SELECT * FROM credentials";
+            Statement stmt = conn.createStatement();
+            ResultSet result = stmt.executeQuery(query);
+            while (result.next()) {
+                String name = result.getString("name");
+                String passWord = result.getString("password");
+                System.out.println("Your UserName and DB Username:"+uName+":"+name+"\nYour Password and DB PAssword:"+passW+":"+passWord);
+                if (uName.equals(name) && passW.equals(passWord)) {
+                    state = true;
+                }
+            }
+        } catch (SQLException | FileNotFoundException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return state;
+    }
+
 }
