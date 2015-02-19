@@ -164,13 +164,12 @@ public class Database {
      */
     public boolean createInitialPassword() {
         try {
-            isConnected();
             String query = "";
             String arr[] = getUserTextDetails();
             String uName = arr[0];
             String passW = arr[1];
 
-            query = ("INSERT IGNORE INTO `credentials`(name,password) VALUES " + "('"+ uName +"','"+ passW +"')");
+            query = ("INSERT INTO `credentials`(name,password) VALUES " + "('"+ uName +"','"+ passW +"')");
             Statement stmt = conn.createStatement();
             stmt.executeUpdate(query);            
             return true;
@@ -180,5 +179,81 @@ public class Database {
         }
 
     }
+    
+    public boolean addStudent(String surname, String firstname, int studClass) {
+        String query = "";
+        try {
+            query = ("INSERT INTO students(surname, firstname, graduation_year)"
+                    + "VALUES('" + surname + "',  '" + firstname + "', '" + studClass + "')");
+            Statement stmt = conn.createStatement();
+            System.out.println("Statement sucessfully created");
+            stmt.executeUpdate(query);
+            System.out.println("Add query succesfully created");
+            return true;
+        }catch(SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+public Vector getStudents() {
+        String query = "";
+        Vector<Student> students = new Vector<>();
+        try {
+            String a,b;
+            int c;
+            double d,e;
+            query = ("SELECT students.surname, students.firstname,students.graduation_year, settings.school_fee, sum(transactions.amount_paid)as 'Total amount paid' FROM Transactions INNER JOIN Settings ON Transactions.setting_Id = Settings.setting_Id and transactions.setting_id = (SELECT setting_id FROM Settings ORDER BY setting_id DESC LIMIT 1) and transactions.type='School Fees' JOIN students ON students.student_Id =transactions.student_Id Group by students.surname");
+            Statement stmt = conn.createStatement();
+            ResultSet rslt = stmt.executeQuery(query);
+            while (rslt.next()) {
+                a = rslt.getString(1);
+                b = rslt.getString(2);
+                c = rslt.getInt(3);
+                d = rslt.getDouble(4);
+                e = rslt.getDouble(5);
+                Student newStud = new Student();
+                
+                
+                newStud.setFirstName(a);
+                
+                newStud.setSurname(b);
+                
+                newStud.setStudentClass(getStudentClass(c));
+                
+                newStud.setFees(d);
+                
+                newStud.setBalance(e);
+                
+                students.add(newStud);
+            }
 
+        } catch (SQLException e) {
+            System.out.println(e);
+            return students;
+        }
+        return students;
+    }
+
+    private String  getStudentClass(int year){
+       String currClass;
+       int classNo;
+       int currYear = now.get(Calendar.YEAR);
+       classNo = ((currYear - year)+12);
+       if(classNo == 0){currClass = "Nursery 1";}
+       else if(classNo == 1){currClass = "Nursery 2";}
+       else if(classNo == 2){currClass = "KG 1";}
+       else if(classNo == 3){currClass = "KG 2";}
+       else if(classNo == 4){currClass = "Class 1";}
+       else if(classNo == 5){currClass = "Class 2";}
+       else if(classNo == 6){currClass = "Class 3";}
+       else if(classNo == 7){currClass = "Class 4";}
+       else if(classNo == 8){currClass = "Class 5";}
+       else if(classNo == 9){currClass = "Class 6";}
+       else if(classNo == 10){currClass = "JHS 1";}
+       else if(classNo == 11){currClass = "JHS 2";}
+       else if(classNo == 12){currClass = "JHS 3";}
+       else{currClass = "Graduated";}
+       return currClass;
+   }
 }

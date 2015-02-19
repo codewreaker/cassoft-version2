@@ -7,16 +7,18 @@ package cassoftControllers;
 
 import cassoftModels.Database;
 import cassoftModels.Operations;
+import cassoftModels.Student;
 import cassoftViews.AddStudent;
 import cassoftViews.MainView;
 import cassoftViews.Settings;
 import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
+import javax.swing.table.DefaultTableModel;
 
 
 /**
@@ -38,10 +40,14 @@ public class MainController {
     private Border border;
     public static String surName;
     public static String firstName;
-
+    public Vector<Student> studList;
+    public Student highlighted;
+    
+    
     public MainController(MainView mv, Database db) {
         this.db = db;
         this.mv = mv;
+        home();
     }
 
     /**
@@ -87,11 +93,15 @@ public class MainController {
                 } else if (e.getSource() == mv.saveButton()) {
                     //put code for saving here
                 } else if (e.getSource() == mv.mainTable()) {
+                    enlargen(mv.mainTable().getSelectedRow());
                     // put code for clicking any part of the table
                 }else if (e.getSource() == mv.home()) {
                     // put code for viewing home screen when the home button is pressed
-                }  else {
+                }  else if(e.getSource() == mv.studPay()) {
                     // System.out.println("Where have you clicked");
+                    
+                }else{
+                    
                 }
             }
 
@@ -128,6 +138,40 @@ public class MainController {
         mv.bg().addMouseMotionListener(mouseMotionListener);
         this.border = mv.getAmountPaidField().getBorder();
 
+    }
+    
+    public void home(){
+        studList = db.getStudents();
+        setupTable();
+    }
+    
+    public void setupTable(){
+        Vector table = new Vector();
+        
+        for(int i=0; i<studList.size();i++){
+            Vector cols = new Vector();
+            Student stud = studList.get(i);
+            cols.add(stud.getFirstName() + " " + stud.getSurname());
+            cols.add(stud.getStudentClass());
+            cols.add(stud.getFees());
+            cols.add(stud.getBalance());
+            table.add(cols);
+        }
+        Vector colsName = new Vector();
+        colsName.add("Name");
+        colsName.add("Class");
+        colsName.add("Fees");
+        colsName.add("Balance");
+        
+        DefaultTableModel dtm = new DefaultTableModel(table, colsName);
+        mv.mainTable().setModel(dtm);
+    }
+    
+    public void enlargen(int index){
+        highlighted = studList.get(index);
+        mv.studName().setText(highlighted.getFirstName() + " " + highlighted.getSurname());
+        mv.className().setText(highlighted.getStudentClass());
+        
     }
 
 }

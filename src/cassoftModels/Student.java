@@ -15,6 +15,8 @@ import java.sql.Date;
 public class Student extends Person {
     Date birthdate;
     String studClass;
+    double fees;
+    double balance;
     
     public Student(String surname, String firstName, int age, char gender, Date birthdate, String studClass){
         super(surname,firstName,age,gender);
@@ -35,12 +37,28 @@ public class Student extends Person {
         this.studClass = studClass;
     }
     
+    public void setFees(double fees){
+        this.fees = fees;
+    }
+    
+    public void setBalance(double balance){
+        this.balance = balance;
+    }
+    
     public Date getBirthDate(){
         return birthdate;
     }
     
     public String getStudentClass(){
         return studClass;
+    }
+    
+    public double getFees(){
+        return this.fees;
+    }
+    
+    public double getBalance(){
+        return this.balance;
     }
     
     

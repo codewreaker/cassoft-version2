@@ -64,6 +64,11 @@ public class AddStudent extends javax.swing.JFrame {
         jLabel3.setText("Class");
 
         classComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "nursery 1", "nursery 2", "KG 1", "KG 2", "Class 1", "Class 2", "Class 3", "Class 4", "Class 5", "Class 6", "JHS 1", "JHS 2", "JHS 3" }));
+        classComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                classComboBoxActionPerformed(evt);
+            }
+        });
 
         saveBtn.setText("Save");
 
@@ -128,6 +133,10 @@ public class AddStudent extends javax.swing.JFrame {
     private void exitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_exitBtnActionPerformed
+
+    private void classComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_classComboBoxActionPerformed
 
     /**
      * @param args the command line arguments
