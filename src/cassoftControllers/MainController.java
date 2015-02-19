@@ -42,12 +42,13 @@ public class MainController {
     public MainController(MainView mv, Database db) {
         this.db = db;
         this.mv = mv;
+        control();
     }
 
     /**
      * This method initiates the listeners.
      */
-    public void control() {
+    private void control() {
         mouseListener = new MouseListener() {
 
             @Override
@@ -77,7 +78,8 @@ public class MainController {
                 } else if (e.getSource() == mv.settingsBtn()) {
                     // put code for application settings here
                 } else if (e.getSource() == mv.addStudent()) {
-                    // put code for adding student here
+                    System.out.println("Hello");
+                    addStudent();
                 } else if (e.getSource() == mv.viewHistory()) {
                     // put code for viewing general statistics here
                 } else if (e.getSource() == mv.searchComboBox()) {
@@ -107,6 +109,8 @@ public class MainController {
             @Override
             public void mouseExited(MouseEvent e) {/**/}
         };
+        
+        
 
   
 
@@ -128,6 +132,13 @@ public class MainController {
         mv.bg().addMouseMotionListener(mouseMotionListener);
         this.border = mv.getAmountPaidField().getBorder();
 
+    }
+    
+    private void addStudent(){
+        if(add == null){
+        add = new AddStudent();
+        }
+        AddStudentController adc = new AddStudentController(add,db);
     }
 
 }

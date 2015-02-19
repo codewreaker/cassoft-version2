@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 11, 2015 at 01:07 AM
+-- Generation Time: Feb 19, 2015 at 06:50 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -16,10 +16,9 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
 
-
-create Database `cassoft`;
-use `cassoft`;
-
+--
+-- Database: `cassoft`
+--
 
 -- --------------------------------------------------------
 
@@ -28,10 +27,10 @@ use `cassoft`;
 --
 
 CREATE TABLE IF NOT EXISTS `credentials` (
-  `c_Id` int(10) NOT NULL,
+`c_Id` int(10) NOT NULL,
   `name` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `credentials`
@@ -73,8 +72,6 @@ CREATE TABLE IF NOT EXISTS `medicals` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
-
-
 
 --
 -- Table structure for table `settings`
@@ -137,6 +134,7 @@ CREATE TABLE IF NOT EXISTS `transactions` (
   `student_Id` int(10) DEFAULT NULL,
   `term_cost` int(10) NOT NULL DEFAULT '0',
   `amount_paid` int(10) NOT NULL DEFAULT '0',
+  `setting_Id` int(10) NOT NULL DEFAULT '0',
   `date` date NOT NULL,
   `type` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -144,6 +142,12 @@ CREATE TABLE IF NOT EXISTS `transactions` (
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `credentials`
+--
+ALTER TABLE `credentials`
+ ADD PRIMARY KEY (`c_Id`), ADD KEY `c_Id` (`c_Id`);
 
 --
 -- Indexes for table `guardians`
@@ -156,7 +160,6 @@ ALTER TABLE `guardians`
 --
 ALTER TABLE `medicals`
  ADD PRIMARY KEY (`medical_Id`);
-
 
 --
 -- Indexes for table `settings`
@@ -174,17 +177,17 @@ ALTER TABLE `students`
 -- Indexes for table `transactions`
 --
 ALTER TABLE `transactions`
- ADD PRIMARY KEY (`transaction_Id`), ADD KEY `student_Id` (`student_Id`);
+ ADD PRIMARY KEY (`transaction_Id`), ADD UNIQUE KEY `setting_Id` (`setting_Id`), ADD UNIQUE KEY `setting_Id_2` (`setting_Id`), ADD KEY `student_Id` (`student_Id`);
 
- --
- -- Indexes for table `credentials`
- --
+--
+-- AUTO_INCREMENT for dumped tables
+--
 
+--
+-- AUTO_INCREMENT for table `credentials`
+--
 ALTER TABLE `credentials`
- ADD PRIMARY KEY (`c_Id`), ADD KEY `c_Id` (`c_Id`);
-
-
-
+MODIFY `c_Id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `guardians`
 --
@@ -195,8 +198,6 @@ MODIFY `guardian_Id` int(10) NOT NULL AUTO_INCREMENT;
 --
 ALTER TABLE `medicals`
 MODIFY `medical_Id` int(10) NOT NULL AUTO_INCREMENT;
---
-
 --
 -- AUTO_INCREMENT for table `settings`
 --
@@ -217,12 +218,6 @@ MODIFY `transaction_Id` int(10) NOT NULL AUTO_INCREMENT;
 --
 
 --
--- AUTO_INCREMENT for table `credentials`
---
-ALTER TABLE `credentials`
-MODIFY `c_Id` int(10) NOT NULL AUTO_INCREMENT;
-
---
 -- Constraints for table `students`
 --
 ALTER TABLE `students`
@@ -233,7 +228,8 @@ ADD CONSTRAINT `students_ibfk_2` FOREIGN KEY (`guardian_Id`) REFERENCES `guardia
 -- Constraints for table `transactions`
 --
 ALTER TABLE `transactions`
-ADD CONSTRAINT `transactions_ibfk_1` FOREIGN KEY (`student_Id`) REFERENCES `students` (`student_Id`);
+ADD CONSTRAINT `transactions_ibfk_1` FOREIGN KEY (`student_Id`) REFERENCES `students` (`student_Id`),
+ADD CONSTRAINT `transactions_ibfk_2` FOREIGN KEY (`setting_Id`) REFERENCES `settings` (`setting_Id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

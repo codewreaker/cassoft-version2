@@ -14,7 +14,7 @@ import javax.swing.JTextField;
  *
  * @author Israel Agyeman-Premp
  */
-public class AddStudent extends javax.swing.JFrame {
+public class AddStudent extends javax.swing.JDialog {
 
     /**
      * Creates new form AddStudent
@@ -43,6 +43,7 @@ public class AddStudent extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Add Student");
+        setAlwaysOnTop(true);
         setResizable(false);
 
         jLabel1.setText("Surname");

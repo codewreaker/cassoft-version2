@@ -27,19 +27,21 @@ public class AddStudentController {
     *A constructor that instantiates an instance of the db, mainview
     *actionListener, AddStudent Class etc
     */
-    public AddStudentController( AddStudent addNew ,Database database,Operations op){
+    public AddStudentController( AddStudent addNew ,Database database){
         this.database = database;
         this.op = op;
         addStud = addNew;
         addStud.setVisible(true);
+        control();
     }
 
    
-   public void control(){        
+   private void control(){        
         actionListener = new ActionListener() {
-
             @Override
-            public void actionPerformed(ActionEvent e) {            
+            public void actionPerformed(ActionEvent e) { 
+                
+                
             }
         };
         
