@@ -88,7 +88,7 @@ public class MainController {
                     //put code to delete student here
                     deleteStudent();
                 } else if (e.getSource() == mv.settingsBtn()) {
-                    // put code for application settings here
+                    settings();
                 } else if (e.getSource() == mv.addStudent()) {
                  
                 } else if (e.getSource() == mv.viewHistory()) {
@@ -221,5 +221,11 @@ public class MainController {
     public void deleteStudent(){
         db.deleteStudent(highlighted.getId());
         highlighted = null;
+    }
+    
+    public void settings(){
+        settings = new Settings();
+        SettingsController sc = new SettingsController(settings, db);
+        sc.control();
     }
 }

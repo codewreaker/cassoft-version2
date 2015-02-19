@@ -331,4 +331,39 @@ public Vector getStudents() {
        
     }
 
+         public ArrayList getSetting() {
+
+        ArrayList settings = new ArrayList();
+        String query = "";
+        try {
+            query = ("SELECT * FROM Settings ORDER BY setting_id DESC LIMIT 1");
+            Statement stmt = conn.createStatement();
+            ResultSet rslt = stmt.executeQuery(query);
+            rslt.next();
+            settings.add(rslt.getInt("year"));
+            settings.add(rslt.getInt("term"));
+            settings.add(rslt.getInt("school_fee"));
+            settings.add(rslt.getInt("classes_fee"));
+            settings.add(rslt.getInt("feeding_fee"));
+        } catch (SQLException e) {
+            return settings;
+        }
+        return settings;
+
+    }
+         
+         public boolean updateSettings(int year, int term, double schoolFee,
+            double feedingFee, double classesFee) {
+        String query = "";
+        try {
+            query = ("INSERT INTO `settings`(year,term,school_fee,classes_fee,feeding_fee)VALUES"
+                    + "(" + year + "," + term + "," + schoolFee + "," + feedingFee + "," + classesFee + ")");
+            Statement stmt = conn.createStatement();
+            stmt.executeUpdate(query);
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+
+    }
 }
