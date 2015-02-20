@@ -47,6 +47,7 @@ public class Settings extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Administrator Settings");
+        setAlwaysOnTop(true);
 
         schoolFeesTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -136,6 +137,7 @@ public class Settings extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void schoolFeesTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_schoolFeesTextFieldActionPerformed

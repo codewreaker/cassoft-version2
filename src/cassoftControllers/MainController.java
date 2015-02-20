@@ -178,7 +178,8 @@ public class MainController {
             cols.add(stud.getFirstName() + " " + stud.getSurname());
             cols.add(stud.getStudentClass());
             cols.add(stud.getFees());
-            cols.add(stud.getBalance());
+            cols.add(stud.getAmountPaid());
+            cols.add(stud.getFees()-stud.getAmountPaid());
             table.add(cols);
             System.out.println("Adding Students from DB");
         }
@@ -186,9 +187,17 @@ public class MainController {
         colsName.add("Name");
         colsName.add("Class");
         colsName.add("Fees");
+        colsName.add("Amount Paid");
         colsName.add("Balance");
         
-        dtm = new DefaultTableModel(table, colsName);
+        dtm = new DefaultTableModel(table, colsName){
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+            
+        };
         mv.mainTable().setModel(dtm);
     }
     
@@ -202,8 +211,14 @@ public class MainController {
   
     public void makePayment(){
         String category = mv.getCategoryComboBox().getSelectedItem().toString();
-        double amount = Double.parseDouble(mv.getAmountPaidField().getText());        
-        db.addTransaction(highlighted.getId(), category, amount);
+        double amount = Double.parseDouble(mv.getAmountPaidField().getText()); 
+        if(db.addTransaction(highlighted.getId(), category, amount)){
+            JOptionPane.showMessageDialog(mv, "Saved");
+        }else{
+            JOptionPane.showMessageDialog(mv, "Failed Transaction");
+        }
+        home();
+            
     }
     
     public void seeHistory(){
@@ -212,7 +227,14 @@ public class MainController {
         historyTableCols.add("Date");
         historyTableCols.add("Type");
         historyTableCols.add("Amount Paid");
-        DefaultTableModel dtm = new DefaultTableModel(historyTable, historyTableCols);
+        DefaultTableModel dtm = new DefaultTableModel(historyTable, historyTableCols){
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+            
+        };
         mv.mainTable().setModel(dtm);
     }
     
@@ -224,7 +246,9 @@ public class MainController {
     }
     
     public void settings(){
-        settings = new Settings();
+        if(settings == null){
+            settings = new Settings();
+        }
         SettingsController sc = new SettingsController(settings, db);
         sc.control();
     }

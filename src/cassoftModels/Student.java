@@ -42,8 +42,8 @@ public class Student extends Person {
         this.fees = fees;
     }
     
-    public void setBalance(double balance){
-        this.balance = balance;
+    public void setAmountPaid(double amountPaid){
+        this.balance = amountPaid;
     }
     
     public void setId(int id){
@@ -62,7 +62,7 @@ public class Student extends Person {
         return this.fees;
     }
     
-    public double getBalance(){
+    public double getAmountPaid(){
         return this.balance;
     }
     
