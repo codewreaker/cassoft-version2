@@ -15,6 +15,9 @@ import java.util.Locale.Category;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 public class Database {
 
@@ -192,9 +195,8 @@ public class Database {
             query = ("INSERT INTO students(surname, firstname, graduation_year)"
                     + "VALUES('" + surname + "',  '" + firstname + "', '" + studClass + "')");
             Statement stmt = conn.createStatement();
-            System.out.println("Statement sucessfully created");
             stmt.executeUpdate(query);
-            System.out.println("Add query succesfully created");
+            addTransaction(getId(firstname,surname),"School Fees",0.0);
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -209,24 +211,17 @@ public class Database {
             String a, b;
             int c, f;
             double d, e;
-            query = ("SELECT students.surname, students.firstname,students.graduation_year, settings.school_fee, sum(transactions.amount_paid)as 'Total amount paid', students.student_id FROM transactions INNER JOIN Settings ON transactions.setting_Id = settings.setting_Id and transactions.setting_id = (SELECT setting_id FROM Settings ORDER BY setting_id DESC LIMIT 1) and transactions.type='School Fees' JOIN students ON students.student_Id =transactions.student_Id Group by students.surname");
+            query = ("SELECT students.surname, students.firstname,students.graduation_year, settings.school_fee, sum(transactions.amount_paid)as 'Total amount paid', students.student_id FROM transactions INNER JOIN Settings ON transactions.setting_Id = settings.setting_Id and transactions.setting_id = (SELECT setting_id FROM Settings ORDER BY setting_id DESC LIMIT 1) and transactions.type='School Fees' JOIN students ON students.student_Id =transactions.student_Id Group by students.student_Id");
             Statement stmt = conn.createStatement();
-            System.out.println("getStudents statement created");
             ResultSet rslt = stmt.executeQuery(query);
             System.out.println("-----------------get students -------------------");
             while (rslt.next()) {
                 a = rslt.getString(1);
-                System.out.println("Surname:" + a);
                 b = rslt.getString(2);
-                System.out.println("Firstname:" + b);
                 c = rslt.getInt(3);
-                System.out.println("Graduation Year:" + c);
                 d = rslt.getDouble(4);
-                System.out.println("Fees:" + d);
                 e = rslt.getDouble(5);
-                System.out.println("Total:" + e);
                 f = rslt.getInt(6);
-                System.out.println("Balance:" + f);
                 Student newStud = new Student();
                 newStud.setFirstName(a);
                 newStud.setSurname(b);
@@ -320,15 +315,50 @@ public class Database {
             return transactions;
         }
     }
+    
+      /**
+     * This method gets the ID of a student.
+     *
+     * @param firstName represents student's first name.
+     * @param surname represents student's surname.
+     * @return represents student's ID
+     */
+    private int getId(String firstName, String surname) {
+        int id = -1;
+        System.out.println(firstName);
+        System.out.println(surname);
+        String query = "";
+        try {
+            query = ("SELECT * FROM students WHERE firstname ='" + firstName + "' AND surname ='" + surname + "'");
+            Statement stmt = conn.createStatement();
+            System.out.println("I");
+            ResultSet rslt = stmt.executeQuery(query);
+            System.out.println("IQ" + id);
+            rslt.next();
+            System.out.println("IQQ" + id);
+            id = rslt.getInt(1);
+            System.out.println("IQQQ" + id);
+        } catch (SQLException e) {
+            return id;
+        }
+        return id;
+    }
+    
+    /**
+     * Deletes a selected student
+     * @param id
+     * @return 
+     */
 
     public boolean deleteStudent(int id) {
         String query = "";
         try {
             query = ("DELETE FROM students WHERE student_Id = '" + id + "'");
             Statement stmt = conn.createStatement();
-            ResultSet result = stmt.executeQuery(query);
+            stmt.executeUpdate(query);            
             return true;
         } catch (SQLException e) {
+            System.out.println(e);
             return false;
         }
     }
@@ -401,16 +431,17 @@ public class Database {
 
     }
 
-//    public static void main(String[] args) {
-//        Database db = new Database();
-//        db.isConnected();
-//        Vector students = db.getStudents();
-//        System.out.println("Contents of Vector: " + students.toString());
-//
-//    }
 
     
-
+ /**
+  * A method for udpdating the settings made by the user
+  * @param year
+  * @param term
+  * @param schoolFee
+  * @param feedingFee
+  * @param classesFee
+  * @return 
+  */
     public boolean updateSettings(int year, int term, double schoolFee,
             double feedingFee, double classesFee) {
         String query = "";
@@ -424,6 +455,45 @@ public class Database {
             return false;
         }
 
+    }
+    
+    
+     public ArrayList suggestSearch(String s) {
+        Vector allRows = new Vector();
+        Vector row;
+        ArrayList<String> search = new ArrayList<>();
+        ArrayList rslt = new ArrayList();
+
+        String query = "";
+
+        try {
+
+            query = "SELECT students.surname, students.firstname, amount_paid, type, Transactions.date FROM students join transactions on students.student_Id = transactions.student_Id WHERE CONCAT(TRIM(students.firstname), ' ', TRIM(students.surname)) LIKE'%" + s + "%'  ORDER BY Transactions.date DESC";
+            Statement stmt = conn.createStatement();
+            ResultSet result = stmt.executeQuery(query);
+            while (result.next()) {
+                row = new Vector();
+                String name = result.getString("firstname") + " " + result.getString("surname");
+                if (!search.contains(name)) {
+                    search.add(name);
+                }
+                row.add(result.getString("firstname"));
+                row.add(result.getString("surname"));
+                row.add(result.getString("amount_paid"));
+                row.add(result.getString("type"));
+
+                allRows.add(row);
+            }
+            //values.add(search);
+            //values.add(columns);
+            rslt.add(search);
+            rslt.add(allRows);
+            //Collections.sort(suggestions);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return rslt;
     }
 
 }

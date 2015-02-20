@@ -140,7 +140,7 @@ public class AddStudent extends javax.swing.JDialog {
     }//GEN-LAST:event_exitBtnActionPerformed
 
     /**
-     * @param args the command line arguments
+     * @return 
      */
     
     /*
@@ -203,6 +203,7 @@ public class AddStudent extends javax.swing.JDialog {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new AddStudent().setVisible(true);
             }

@@ -50,10 +50,8 @@ public class MainView extends javax.swing.JFrame {
         studName = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         amountPaidLabel = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         studImage = new javax.swing.JLabel();
-        studView = new javax.swing.JLabel();
         studHistory = new javax.swing.JLabel();
         studDelete = new javax.swing.JLabel();
         pay = new javax.swing.JLabel();
@@ -62,9 +60,10 @@ public class MainView extends javax.swing.JFrame {
         amtPaidTxtField = new javax.swing.JTextField();
         saveBtn = new javax.swing.JButton();
         bg = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        studView = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setAlwaysOnTop(true);
         setAutoRequestFocus(false);
         setMinimumSize(new java.awt.Dimension(688, 760));
         setUndecorated(true);
@@ -124,17 +123,17 @@ public class MainView extends javax.swing.JFrame {
         getContentPane().add(addStudent, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 10, -1, 80));
 
         className.setText("No name selected");
-        getContentPane().add(className, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 150, 30));
+        getContentPane().add(className, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 150, 30));
 
         viewHistory.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/summary.png"))); // NOI18N
         viewHistory.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         getContentPane().add(viewHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 10, -1, 80));
 
         studName.setBackground(new java.awt.Color(255, 255, 255));
-        studName.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        studName.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         studName.setForeground(new java.awt.Color(255, 255, 255));
         studName.setText("Student Name");
-        getContentPane().add(studName, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 160, -1));
+        getContentPane().add(studName, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 150, 30));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
@@ -148,24 +147,14 @@ public class MainView extends javax.swing.JFrame {
         amountPaidLabel.setText("Amount Paid");
         getContentPane().add(amountPaidLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 550, -1, 20));
 
-        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel3.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("View Student");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 310, -1, -1));
-
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Delete Student");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 380, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 300, -1, -1));
 
         studImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/placeholder.png"))); // NOI18N
         getContentPane().add(studImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 110, 110));
-
-        studView.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/view.png"))); // NOI18N
-        studView.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        getContentPane().add(studView, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, -1, -1));
 
         studHistory.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/history.png"))); // NOI18N
         studHistory.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -173,20 +162,20 @@ public class MainView extends javax.swing.JFrame {
 
         studDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/delete.png"))); // NOI18N
         studDelete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        getContentPane().add(studDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, -1, -1));
+        getContentPane().add(studDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, -1, -1));
 
         pay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/pay.png"))); // NOI18N
         pay.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        getContentPane().add(pay, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, -1, -1));
+        getContentPane().add(pay, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, -1, -1));
 
-        categoryComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Feeding Fee", "School Fees", "Classes Fee" }));
+        categoryComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Feeding Fees", "School Fees", "Classes Fees" }));
         getContentPane().add(categoryComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 510, 210, 40));
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Make Payment");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 440, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 360, -1, -1));
 
         amtPaidTxtField.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         amtPaidTxtField.setMinimumSize(new java.awt.Dimension(59, 25));
@@ -206,6 +195,16 @@ public class MainView extends javax.swing.JFrame {
 
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/UI-01.png"))); // NOI18N
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, -1));
+
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel3.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("View Student");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 700, -1, -1));
+
+        studView.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/view.png"))); // NOI18N
+        studView.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        getContentPane().add(studView, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 670, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
