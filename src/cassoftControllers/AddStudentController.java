@@ -6,7 +6,6 @@
 package cassoftControllers;
 
 import cassoftModels.Database;
-import cassoftModels.Operations;
 import cassoftViews.AddStudent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,7 +18,6 @@ import java.awt.event.ActionListener;
 public class AddStudentController {
     Database database;
     AddStudent addStud;
-    Operations op;
     ActionListener actionListener;
     
     
@@ -29,7 +27,6 @@ public class AddStudentController {
     */
     public AddStudentController( AddStudent addNew ,Database database){
         this.database = database;
-        this.op = op;
         addStud = addNew;
         addStud.setVisible(true);
         control();

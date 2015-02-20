@@ -6,7 +6,6 @@
 package cassoftControllers;
 
 import cassoftModels.Database;
-import cassoftModels.Operations;
 import cassoftViews.AddStudent;
 import cassoftViews.MainView;
 import cassoftViews.Settings;
@@ -29,7 +28,6 @@ public class MainController {
     private MouseListener mouseListener;
     private Database db;
     private MainView mv;
-    private Operations op;
     private AddStudent add;
     private Settings settings;
     private int xMouse;
