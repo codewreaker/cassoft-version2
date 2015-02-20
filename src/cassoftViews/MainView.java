@@ -45,9 +45,9 @@ public class MainView extends javax.swing.JFrame {
         home = new javax.swing.JLabel();
         settings = new javax.swing.JLabel();
         addStudent = new javax.swing.JLabel();
-        studName = new javax.swing.JLabel();
+        className = new javax.swing.JLabel();
         viewHistory = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        studName = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         amountPaidLabel = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -70,7 +70,6 @@ public class MainView extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        mainTable.setBackground(new java.awt.Color(255, 255, 255));
         mainTable.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         mainTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -124,18 +123,18 @@ public class MainView extends javax.swing.JFrame {
         addStudent.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         getContentPane().add(addStudent, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 10, -1, 80));
 
-        studName.setText("No name selected");
-        getContentPane().add(studName, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 150, 30));
+        className.setText("No name selected");
+        getContentPane().add(className, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 150, 30));
 
         viewHistory.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/summary.png"))); // NOI18N
         viewHistory.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         getContentPane().add(viewHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 10, -1, 80));
 
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Student Name");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 160, -1));
+        studName.setBackground(new java.awt.Color(255, 255, 255));
+        studName.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        studName.setForeground(new java.awt.Color(255, 255, 255));
+        studName.setText("Student Name");
+        getContentPane().add(studName, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 160, -1));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
@@ -293,12 +292,16 @@ public class MainView extends javax.swing.JFrame {
     }
 
     /**
-     * This returns the minimise button
+     * This returns the minimize button
      *
      * @return student view
      */
     public JLabel studView() {
         return studView;
+    }
+    
+    public JLabel className(){
+        return className;
     }
 
     /**
@@ -453,10 +456,10 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JTextField amtPaidTxtField;
     private javax.swing.JLabel bg;
     private javax.swing.JComboBox categoryComboBox;
+    private javax.swing.JLabel className;
     private javax.swing.JLabel close;
     private javax.swing.JLabel fullscreen;
     private javax.swing.JLabel home;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;

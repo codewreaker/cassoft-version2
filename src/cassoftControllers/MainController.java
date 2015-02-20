@@ -6,16 +6,21 @@
 package cassoftControllers;
 
 import cassoftModels.Database;
+import cassoftModels.Operations;
+import cassoftModels.Student;
 import cassoftViews.AddStudent;
 import cassoftViews.MainView;
 import cassoftViews.Settings;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
+import javax.swing.table.DefaultTableModel;
 
 
 /**
@@ -26,20 +31,27 @@ public class MainController {
 
     private MouseMotionListener mouseMotionListener;
     private MouseListener mouseListener;
+    private ActionListener actionListener;
     private Database db;
     private MainView mv;
+    private Operations op;
     private AddStudent add;
     private Settings settings;
     private int xMouse;
     private int yMouse;
     private KeyAdapter keyAdapter;
     private Border border;
+    private DefaultTableModel dtm;
     public static String surName;
     public static String firstName;
-
+    public Vector<Student> studList;
+    public Student highlighted;
+    
+    
     public MainController(MainView mv, Database db) {
         this.db = db;
         this.mv = mv;
+        home();  
         control();
     }
 
@@ -69,14 +81,15 @@ public class MainController {
                     }
                 } else if (e.getSource() == mv.studHistory()) {
                     //put code for student history here
+                    seeHistory();
                 } else if (e.getSource() == mv.studView()) {
                     //put code to view student here
                 } else if (e.getSource() == mv.studDelete()) {
                     //put code to delete student here
+                    deleteStudent();
                 } else if (e.getSource() == mv.settingsBtn()) {
-                    // put code for application settings here
+                    settings();
                 } else if (e.getSource() == mv.addStudent()) {
-                    System.out.println("Hello");
                     addStudent();
                 } else if (e.getSource() == mv.viewHistory()) {
                     // put code for viewing general statistics here
@@ -86,12 +99,20 @@ public class MainController {
                     //search button
                 } else if (e.getSource() == mv.saveButton()) {
                     //put code for saving here
+                    makePayment();
                 } else if (e.getSource() == mv.mainTable()) {
+                    System.out.println("table clicked");
+                    enlargen(mv.mainTable().getSelectedRow());
+                    
                     // put code for clicking any part of the table
                 }else if (e.getSource() == mv.home()) {
                     // put code for viewing home screen when the home button is pressed
-                }  else {
+                    home();
+                }  else if(e.getSource() == mv.studPay()) {
                     // System.out.println("Where have you clicked");
+                    
+                }else{
+                    
                 }
             }
 
@@ -106,9 +127,19 @@ public class MainController {
 
             @Override
             public void mouseExited(MouseEvent e) {/**/}
+
+            
         };
         
-        
+        actionListener = new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(e.getSource()== mv.mainTable()){
+                    
+                }
+            }
+        };
 
   
 
@@ -126,17 +157,106 @@ public class MainController {
         mv.home().addMouseListener(mouseListener);
         //mv.searchTextField().addMouseListener(mouseListener);
         mv.mainTable().addMouseListener(mouseListener);
+        
         mv.bg().addMouseListener(mouseListener);
         mv.bg().addMouseMotionListener(mouseMotionListener);
         this.border = mv.getAmountPaidField().getBorder();
 
     }
     
-    private void addStudent(){
+    public void home(){
+        studList = db.getStudents();
+        setupTable();
+    }
+    
+    public void setupTable(){
+        Vector table = new Vector();
+        
+        for(int i=0; i<studList.size();i++){
+            Vector cols = new Vector();
+            Student stud = studList.get(i);
+            cols.add(stud.getFirstName() + " " + stud.getSurname());
+            cols.add(stud.getStudentClass());
+            cols.add(stud.getFees());
+            cols.add(stud.getAmountPaid());
+            cols.add(stud.getFees()-stud.getAmountPaid());
+            table.add(cols);
+            System.out.println("Adding Students from DB");
+        }
+        Vector colsName = new Vector();
+        colsName.add("Name");
+        colsName.add("Class");
+        colsName.add("Fees");
+        colsName.add("Amount Paid");
+        colsName.add("Balance");
+        
+        dtm = new DefaultTableModel(table, colsName){
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+            
+        };
+        mv.mainTable().setModel(dtm);
+    }
+    
+    public void enlargen(int index){
+        highlighted = studList.get(index);
+        mv.studName().setText(highlighted.getFirstName() + " " + highlighted.getSurname());
+        mv.className().setText(highlighted.getStudentClass());
+        
+    }
+    
+  
+    public void makePayment(){
+        String category = mv.getCategoryComboBox().getSelectedItem().toString();
+        double amount = Double.parseDouble(mv.getAmountPaidField().getText()); 
+        if(db.addTransaction(highlighted.getId(), category, amount)){
+            JOptionPane.showMessageDialog(mv, "Saved");
+        }else{
+            JOptionPane.showMessageDialog(mv, "Failed Transaction");
+        }
+        home();
+            
+    }
+    
+    public void seeHistory(){
+        Vector historyTable = db.getTransactionByStudent(highlighted.getId());
+        Vector historyTableCols = new Vector();
+        historyTableCols.add("Date");
+        historyTableCols.add("Type");
+        historyTableCols.add("Amount Paid");
+        DefaultTableModel dtm = new DefaultTableModel(historyTable, historyTableCols){
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+            
+        };
+        mv.mainTable().setModel(dtm);
+    }
+    
+   
+    
+    public void deleteStudent(){
+        db.deleteStudent(highlighted.getId());
+        highlighted = null;
+    }
+    
+    public void settings(){
+        if(settings == null){
+            settings = new Settings();
+        }
+        SettingsController sc = new SettingsController(settings, db);
+        sc.control();
+    }
+     private void addStudent(){
         if(add == null){
         add = new AddStudent();
         }
         AddStudentController adc = new AddStudentController(add,db);
     }
-
+     
 }

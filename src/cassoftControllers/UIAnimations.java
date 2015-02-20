@@ -52,6 +52,7 @@ public class UIAnimations {
                         System.exit(0);
                     }
                 } else if (e.getSource() == mv.minimise()) {
+                    mv.setState(Frame.ICONIFIED);
                 } else if (e.getSource() == mv.maximise()) {
                     switchWindows();
                 } else if (e.getSource() == mv.fullscreen()) {
@@ -113,7 +114,7 @@ public class UIAnimations {
             public void mouseExited(MouseEvent e) {
                 if (e.getSource() == mv.close()) {
                 } else if (e.getSource() == mv.minimise()) {
-                    mv.setState(Frame.ICONIFIED);
+                    
                 } else if (e.getSource() == mv.maximise()) {
                 } else if (e.getSource() == mv.studHistory()) {
                     mv.studHistory().setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/history.png")));
